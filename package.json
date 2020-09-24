@@ -1,0 +1,30 @@
+{
+  "name": "productoptions",
+  "version": "1.0.0",
+  "description": "Product options component",
+  "main": "/server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrr48-fec02-brucequalis/productOptions.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": ">=6.13.0"
+  },
+  "bugs": {
+    "url": "https://github.com/hrr48-fec02-brucequalis/productOptions/issues"
+  },
+  "homepage": "https://github.com/hrr48-fec02-brucequalis/productOptions#readme"
+}
