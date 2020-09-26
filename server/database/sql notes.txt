@@ -4,5 +4,3 @@
 -- to select:
 -- select * from stocks;select * from products;select * from stores;
 
--- to run script run:
--- mysql -u root < database/resetDB.sql

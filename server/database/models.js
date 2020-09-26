@@ -41,17 +41,11 @@ const Stock = db.define('Stock', {
   }
 });
 
-// have to add this line to avoid checking for foreign keys
-// when initializing the database
-let promise = db.query("set FOREIGN_KEY_CHECKS=0");
-
+// set up foreign keys and two way association
 Product.hasMany(Stock);
 Store.hasMany(Stock);
 Stock.belongsTo(Product);
 Stock.belongsTo(Store);
-
-// set FOREIGN_KEY_CHECKS=0;
-
 
 
 Product.sync();
