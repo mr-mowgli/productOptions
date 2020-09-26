@@ -20,6 +20,13 @@ const Product = db.define('Product', {
     defaultValue: 0
   }
 })
+const Store = db.define('Store', {
+  location: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    // unique: true
+  }
+});
 
 const Stock = db.define('Stock', {
   color: {
@@ -34,22 +41,22 @@ const Stock = db.define('Stock', {
   }
 });
 
-const Store = db.define('Store', {
-  location: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    // unique: true
-  }
-});
+// have to add this line to avoid checking for foreign keys
+// when initializing the database
+let promise = db.query("set FOREIGN_KEY_CHECKS=0");
 
 Product.hasMany(Stock);
+Store.hasMany(Stock);
 Stock.belongsTo(Product);
 Stock.belongsTo(Store);
+
+// set FOREIGN_KEY_CHECKS=0;
+
+
 
 Product.sync();
 Stock.sync();
 Store.sync();
-
 
 const models = {Product, Stock, Store};
 
