@@ -7,7 +7,16 @@ var data = [
     reviewCount: 120,
     sizes: ["s", "m", "l", "xl", "xxl", "xxxl"],
     colors: ["red", "navy", "black", "smoke"]
-}
+},
+  {
+    productID: '2',
+    name: "Hanes Men's Ultimate Cotton Sweatshirt",
+    price: 19.9,
+    reviews: 4.5,
+    reviewCount: 15,
+    sizes: ["s", "m", "l", "xl", "xxl", "xxxl"],
+    colors: ["white", "black", "red", "blue"]
+  }
 ]
 
 // {price: 13.5,  colors: [foo, bar, ...], sizes: [S, M, L, …], reviews: 4.5, reviewCount: 18 }

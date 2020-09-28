@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 
 
 // getting data from testData file
-app.get('/products/1', (req, res) => {
+app.get('/products', (req, res) => {
   debugger;
   res.send(data);
 })
