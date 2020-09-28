@@ -20,6 +20,13 @@ const Product = db.define('Product', {
     defaultValue: 0
   }
 })
+const Store = db.define('Store', {
+  location: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    // unique: true
+  }
+});
 
 const Stock = db.define('Stock', {
   color: {
@@ -34,22 +41,16 @@ const Stock = db.define('Stock', {
   }
 });
 
-const Store = db.define('Store', {
-  location: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    // unique: true
-  }
-});
-
+// set up foreign keys and two way association
 Product.hasMany(Stock);
+Store.hasMany(Stock);
 Stock.belongsTo(Product);
 Stock.belongsTo(Store);
+
 
 Product.sync();
 Stock.sync();
 Store.sync();
-
 
 const models = {Product, Stock, Store};
 
