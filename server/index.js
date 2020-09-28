@@ -2,19 +2,15 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-const data = require('./data/testData.js');
-
 const db = require('./database');
-
-app.get('/', (req, res) => {
-  res.send('Express is functional!');
-});
+const data = require('./data/testData.js');
+const path = require('path');
 
 
-
+app.use(express.static(path.join(__dirname, '../client/public/dist')))
 
 // getting data from testData file
-app.get('/products/1', (req, res) => {
+app.get('/products', (req, res) => {
   debugger;
   res.send(data);
 })
