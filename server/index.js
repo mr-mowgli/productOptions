@@ -2,25 +2,85 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-const db = require('./database');
+const db = require('./database/models');
 const data = require('./data/testData.js');
 const path = require('path');
+const { QueryTypes } = require('sequelize');
+const sequelize = require('./database/index.js');
+const cors = require('cors');
 
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, '../client/public/dist')))
 
-// getting data from testData file
-app.get('/products', (req, res) => {
+
+// getting all products data from DB
+app.get('/products', async (req, res) => {
+  const data = await db.Product.findAll({
+    attributes: {exclude: ['createdAt', 'updatedAt']}
+  })
+    res.send(data);
+  })
+
+  // getting a product's data from the DB
+app.get('/products/:productId', async (req, res) => {
   debugger;
-  res.send(data);
-})
+  const data = await db.Product.findAll({
+    where: {
+      id: req.params.productId
+    },
+    attributes: {exclude: ['createdAt', 'updatedAt']}
+  })
+    res.send(data);
+  })
 
-// app.get('/products/:productID', (req, res) => {
+//   // getting all products stock from DB
 
-// })
-// app.get('/products/:productID', (req, res) => {
+// stock using a raw MySQL query with inner join
+app.get('/stock', async (req, res) => {
 
+  const stocks = await sequelize.query("SELECT stocks.id, products.name, \
+  stores.location, stocks.color, stocks.size, stocks.qty, products.id as \
+  productId FROM stocks INNER JOIN stores ON stores.id = stocks.storeId \
+  INNER JOIN products ON stocks.productId = products.id",
+  {type: QueryTypes.SELECT});
+
+    await res.send(stocks);
+  })
+
+
+  // get a specific stock using a raw MySQL query with inner join
+app.get('/stock/:productId', async (req, res) => {
+
+  const stocks = await sequelize.query(`SELECT stocks.id, products.name, \
+  stores.location, stocks.color, stocks.size, stocks.qty, products.id as \
+  productId FROM stocks INNER JOIN stores ON stores.id = stocks.storeId \
+  INNER JOIN products ON stocks.productId = products.id \
+  WHERE stocks.productId = ${[req.params.productId]}`,
+  {type: QueryTypes.SELECT});
+
+    await res.send(stocks);
+  })
+
+
+  // // getting all stock using Sequelize findAll, includes all ids
+  // app.get('/stock', async (req, res) => {
+  //   // debugger;
+  //     const data = await db.Stock.findAll({
+  //   attributes: {exclude: ['createdAt', 'updatedAt']},
+  //   include: [{
+  //     model: db.Store,
+  //     attributes: {exclude: ['createdAt', 'updatedAt']},
+  //     required: false,
+  //   }, {
+  //         model: db.Product,
+  //         attributes: {exclude: ['createdAt', 'updatedAt']},
+  //         require: false
+  //       }]
   // })
+  //     await res.send(data);
+  //   })
+
 
   app.listen(port, () => {
     console.log(`app listening at http:localhost:${port}`)
