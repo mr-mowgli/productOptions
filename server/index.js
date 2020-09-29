@@ -22,7 +22,7 @@ app.get('/products', async (req, res) => {
     res.send(data);
   })
 
-  // getting a product's data from the DB
+  // getting a specific product's data from the DB
 app.get('/products/:productId', async (req, res) => {
   debugger;
   const data = await db.Product.findAll({
@@ -34,9 +34,8 @@ app.get('/products/:productId', async (req, res) => {
     res.send(data);
   })
 
-//   // getting all products stock from DB
 
-// stock using a raw MySQL query with inner join
+// get all available stock using raw SQL query with inner joins
 app.get('/stock', async (req, res) => {
 
   const stocks = await sequelize.query("SELECT stocks.id, products.name, \
@@ -49,7 +48,7 @@ app.get('/stock', async (req, res) => {
   })
 
 
-  // get a specific stock using a raw MySQL query with inner join
+  // get a specific product's stock using raw SQL query with inner joins
 app.get('/stock/:productId', async (req, res) => {
 
   const stocks = await sequelize.query(`SELECT stocks.id, products.name, \
@@ -63,7 +62,7 @@ app.get('/stock/:productId', async (req, res) => {
   })
 
 
-  // // getting all stock using Sequelize findAll, includes all ids
+  // ------------------ getting stock data using sequelize methods ----------------
   // app.get('/stock', async (req, res) => {
   //   // debugger;
   //     const data = await db.Stock.findAll({
