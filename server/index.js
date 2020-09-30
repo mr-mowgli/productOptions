@@ -61,6 +61,14 @@ app.get('/stock/:productId', async (req, res) => {
     await res.send(stocks);
   })
 
+  // getting all products data from DB
+app.get('/stores', async (req, res) => {
+  const data = await db.Store.findAll({
+    attributes: {exclude: ['createdAt', 'updatedAt']}
+  })
+    res.send(data);
+  })
+
 
   // ------------------ getting stock data using sequelize methods ----------------
   // app.get('/stock', async (req, res) => {
