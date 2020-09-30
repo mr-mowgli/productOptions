@@ -8,11 +8,11 @@ const Product = db.define('Product', {
     allowNull: false
   },
   price: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.FLOAT,
     allowNull: false
   },
   reviews: {
-   type: DataTypes.INTEGER,
+   type: DataTypes.FLOAT,
     defaultValue: 0
   },
   reviewCount: {
