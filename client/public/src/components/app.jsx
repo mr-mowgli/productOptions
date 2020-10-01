@@ -21,13 +21,13 @@ const App = () => {
   // get the products general details such as price, name and reviews
   const getProduct = async (productId) => {
     const response = await axios.get(`/products/${productId}`);
-    const productData = response.data[0];
+    const productData = response.data;
     setProduct(productData);
   }
 
   const getStore = async (storeId) => {
     const response = await axios.get(`/stores/${storeId}`);
-    const storeData = response.data[0];
+    const storeData = response.data;
     setStore(storeData);
   }
 
@@ -69,21 +69,24 @@ const App = () => {
      }
   }
 
-  useEffect( () => {
-    debugger;
-     getProduct(product.id);
-     getStore(store.id);
-     getstores();
-     getStock(product.id);
-     getColorsAndSizes();
-     getQty();
+  useEffect( async () => {
+    // const fetchData = async () => {
+      await getProduct(product.id);
+      await getStore(store.id);
+      await getstores();
+      await getStock(product.id);
+      getColorsAndSizes();
+      getQty();
+
+    // }
+    // fetchData();
     // passing in this array as a second parameter re-renders only if one of the elements change
   }, [product.id, store.location, stock.length])
 
     return (
       <div>
         <Details product={product} />
-        <Options stock={stock} colors={colors} sizes={sizes} />
+        <Options colors={colors} sizes={sizes}/>
         <Store store={store} qty={qty}/>
       </div>
     )

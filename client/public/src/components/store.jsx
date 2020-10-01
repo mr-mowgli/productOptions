@@ -10,8 +10,8 @@ const Store = ({store, qty}) => {
 
 return (
   <div>
-    <div>{store.location ? capitalize(store.location) : ''}</div>
-    <div>{qty} Left</div>
+    <div className='storeLocation'>{store.location ? capitalize(store.location) : ''}</div>
+    <div className='qty'>{qty} Left</div>
   </div>
 )
 }

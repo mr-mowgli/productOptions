@@ -30,7 +30,7 @@ app.get('/products/:productId', async (req, res) => {
     },
     attributes: {exclude: ['createdAt', 'updatedAt']}
   })
-    res.send(data);
+    res.send(data[0]);
   })
 
 
@@ -68,6 +68,7 @@ app.get('/stores', async (req, res) => {
     res.send(data);
   })
 
+  // get a store's data
 app.get('/stores/:storeId', async (req, res) => {
   const data = await db.Store.findAll({
     where: {
@@ -75,7 +76,7 @@ app.get('/stores/:storeId', async (req, res) => {
     },
     attributes: {exclude: ['createdAt', 'updatedAt']}
   })
-    res.send(data);
+    res.send(data[0]);
   })
 
 
