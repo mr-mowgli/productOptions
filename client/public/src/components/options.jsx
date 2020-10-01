@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Options = ({stock, colors, sizes}) => {
+const Options = ({colors, sizes}) => {
   return (
     <div>
-      <div>
+      <div className='colorsGrid'>
         {colors.map(color => color + ' ')}
       </div>
-      <div>
         <br></br>
+      <div className='sizesGrid'>
         {sizes.map(size => size + ' ')}
       </div>
 

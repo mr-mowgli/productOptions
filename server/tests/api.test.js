@@ -34,8 +34,7 @@ test(`requesting a product's information to return only 1 product
 with the defined properties`, () => {
     return axios.get(`http://localhost:3000/products/1`)
     .then( (results) => {
-      expect(results.data.length).toEqual(1);
-      expect(results.data[0]).toMatchObject(product);
+      expect(results.data).toMatchObject(product);
     })
     .catch((err) => {
       throw(err);
