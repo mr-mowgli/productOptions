@@ -25,6 +25,7 @@ const App = () => {
     setProduct(productData);
   }
 
+  // get a store's id and location
   const getStore = async (storeId) => {
     const response = await axios.get(`/stores/${storeId}`);
     const storeData = response.data;
@@ -32,7 +33,7 @@ const App = () => {
   }
 
   // get a list of all the stores (names and ids)
-  const getstores = async () => {
+  const getStores = async () => {
     const response = await axios.get(`/stores`);
     const storesData = response.data;
     setStores(storesData);
@@ -72,7 +73,7 @@ const App = () => {
   useEffect( () => {
     getProduct(product.id);
     getStore(store.id);
-    getstores();
+    getStores();
     getStock(product.id);
     getColorsAndSizes();
     getQty();
