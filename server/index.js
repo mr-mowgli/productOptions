@@ -24,7 +24,6 @@ app.get('/products', async (req, res) => {
 
   // getting a specific product's data from the DB
 app.get('/products/:productId', async (req, res) => {
-  debugger;
   const data = await db.Product.findAll({
     where: {
       id: req.params.productId
@@ -61,13 +60,24 @@ app.get('/stock/:productId', async (req, res) => {
     await res.send(stocks);
   })
 
-  // getting all products data from DB
+  // getting all Stores data from DB
 app.get('/stores', async (req, res) => {
   const data = await db.Store.findAll({
     attributes: {exclude: ['createdAt', 'updatedAt']}
   })
     res.send(data);
   })
+
+app.get('/stores/:storeId', async (req, res) => {
+  const data = await db.Store.findAll({
+    where: {
+      id: req.params.storeId
+    },
+    attributes: {exclude: ['createdAt', 'updatedAt']}
+  })
+    res.send(data);
+  })
+
 
 
   // ------------------ getting stock data using sequelize methods ----------------
