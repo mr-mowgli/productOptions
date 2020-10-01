@@ -58,7 +58,6 @@ describe('Store should contain the correct elements', () => {
 describe('Details should contain the correct elements', () => {
   let product = {id: 4, name: 'test item', reviews: 4.83, reviewCount: 59};
   let wrapper = shallow(<Details product={product} />);
-  // debugger;
   test('Details should contain three p elements', () => {
     expect(wrapper.getElements('p')[0].props.children.length).toBe(3);
   })

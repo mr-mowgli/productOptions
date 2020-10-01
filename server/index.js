@@ -83,7 +83,6 @@ app.get('/stores/:storeId', async (req, res) => {
 
   // ------------------ getting stock data using sequelize methods ----------------
   // app.get('/stock', async (req, res) => {
-  //   // debugger;
   //     const data = await db.Stock.findAll({
   //   attributes: {exclude: ['createdAt', 'updatedAt']},
   //   include: [{

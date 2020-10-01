@@ -69,19 +69,15 @@ const App = () => {
      }
   }
 
-  useEffect( async () => {
-    // const fetchData = async () => {
-      await getProduct(product.id);
-      await getStore(store.id);
-      await getstores();
-      await getStock(product.id);
-      getColorsAndSizes();
-      getQty();
-
-    // }
-    // fetchData();
+  useEffect( () => {
+    getProduct(product.id);
+    getStore(store.id);
+    getstores();
+    getStock(product.id);
+    getColorsAndSizes();
+    getQty();
     // passing in this array as a second parameter re-renders only if one of the elements change
-  }, [product.id, store.location, stock.length])
+  }, [store.location, stock.length])
 
     return (
       <div>

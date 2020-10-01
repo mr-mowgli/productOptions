@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 const Store = ({store, qty}) => {
 
   const capitalize = (string) => {
-    // debugger;
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
