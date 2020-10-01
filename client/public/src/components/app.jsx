@@ -4,14 +4,19 @@ import axios from 'axios';
 
 import Details from './details.jsx';
 import Options from './options.jsx';
+import Store from './store.jsx';
 
 const App = () => {
-  const [product, setProduct] = useState({id: 1});
-  const [store, setStore] = useState({id: 1});
-  const [allStores, setAllStores] = useState([]);
+  const [stores, setStores] = useState([]);
   const [stock, setStock] = useState([]);
   const [colors, setColors] = useState([]);
   const [sizes, setSizes] = useState([]);
+
+  const [store, setStore] = useState({id: 1});
+  const [product, setProduct] = useState({id: 1});
+  const [color, setColor] = useState('red');
+  const [size, setSize] = useState('M');
+  const [qty, setQty] = useState(0);
 
   // get the products general details such as price, name and reviews
   const getProduct = async (productId) => {
@@ -27,10 +32,10 @@ const App = () => {
   }
 
   // get a list of all the stores (names and ids)
-  const getAllStores = async () => {
+  const getstores = async () => {
     const response = await axios.get(`/stores`);
     const storesData = response.data;
-    setAllStores(storesData);
+    setStores(storesData);
   }
 
   // get all available stock for the selected item in the selected store
@@ -40,10 +45,13 @@ const App = () => {
     // filter to only have the selected store's stock for the selected product
     const productStock = stockData.filter(item => item.location === store.location);
     setStock(productStock);
-    // extract colors and sizes from the product stock
+    }
+
+    // extract colors and sizes options from the product stock
+  const getColorsAndSizes = () => {
     var colors = {};
     var sizes = {};
-    productStock.forEach( item => {
+    stock.forEach( item => {
       // adding colors and sizes keys only once, in one iteration
       if ( !colors[item.color] ) { colors[item.color] = true }
       if ( !sizes[item.size] ) { sizes[item.size] = true }
@@ -53,21 +61,33 @@ const App = () => {
     setSizes(Object.keys(sizes));
   }
 
+  const getQty = () => {
+    for (var product of stock) {
+      if (product.color === color && product.size === size) {
+         setQty(product.qty);
+      }
+     }
+  }
+
   useEffect( () => {
+    debugger;
      getProduct(product.id);
      getStore(store.id);
-     getAllStores();
+     getstores();
      getStock(product.id);
+     getColorsAndSizes();
+     getQty();
     // passing in this array as a second parameter re-renders only if one of the elements change
-  }, [product.id, store.id, stock.length, allStores.length])
+  }, [product.id, store.location, stock.length])
 
     return (
       <div>
         <Details product={product} />
         <Options stock={stock} colors={colors} sizes={sizes} />
-        {/* <Store /> */}
+        <Store store={store} qty={qty}/>
       </div>
     )
 }
+
 
 export default App;
