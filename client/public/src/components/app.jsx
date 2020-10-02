@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 
 import Details from './details.jsx';
+import SelectQty from './selectQty.jsx'
 import Options from './options.jsx';
 import Store from './store.jsx';
+import {} from '../styling/styles.jsx';
 
 const App = () => {
   const [stores, setStores] = useState([]);
@@ -83,6 +85,7 @@ const App = () => {
     return (
       <div>
         <Details product={product} />
+        <SelectQty />
         <Options colors={colors} sizes={sizes}/>
         <Store store={store} qty={qty}/>
       </div>
