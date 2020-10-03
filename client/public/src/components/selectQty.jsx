@@ -6,7 +6,8 @@ import QtyDropDown from './qtyDropdown.jsx';
 import {SelectQtyContainer, SelectQtyTitle} from '../styling/qtyDropdown.jsx';
 
 
-const SelectQty = () => {
+const SelectQty = ({buyQty, handleBuyQtyChange}) => {
+
   const [dropdownState, setDropDownState] = useState({active: false});
 
   const toggleClass = () => {
@@ -20,15 +21,13 @@ const SelectQty = () => {
 
   useEffect( () => {}, [dropdownState]);
 
-
-
   return (
     <SelectQtyContainer>
       <SelectQtyTitle>Quantity</SelectQtyTitle>
-      <QtyDropDown active={dropdownState.active} toggleClass={toggleClass} closeDropdown= {closeDropdown}/>
+      <QtyDropDown active={dropdownState.active} toggleClass={toggleClass}
+       closeDropdown= {closeDropdown} buyQty={buyQty} handleBuyQtyChange={handleBuyQtyChange}/>
     </SelectQtyContainer>
   )
 }
 
-export default SelectQty
-
+export default SelectQty;

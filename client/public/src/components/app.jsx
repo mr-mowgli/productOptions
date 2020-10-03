@@ -20,6 +20,8 @@ const App = () => {
   const [size, setSize] = useState('M');
   const [qty, setQty] = useState(0);
 
+  const [buyQty, setBuyQty] = useState(1);
+
   // get the products general details such as price, name and reviews
   const getProduct = async (productId) => {
     const response = await axios.get(`/products/${productId}`);
@@ -72,6 +74,10 @@ const App = () => {
      }
   }
 
+  const handleBuyQtyChange = (number) => {
+    setBuyQty(number);
+  }
+
   useEffect( () => {
     getProduct(product.id);
     getStore(store.id);
@@ -85,12 +91,11 @@ const App = () => {
     return (
       <div>
         <Details product={product} />
-        <SelectQty />
+        <SelectQty buyQty={buyQty} handleBuyQtyChange={handleBuyQtyChange}/>
         <Options colors={colors} sizes={sizes}/>
         <Store store={store} qty={qty}/>
       </div>
     )
 }
-
 
 export default App;

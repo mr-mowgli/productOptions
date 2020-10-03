@@ -7,7 +7,7 @@ import QtyNumber from './qtyNumber.jsx';
 import alertWhenClickedOutside from '../utils/outsideClick.js'
 
 
-const QtyDropDown = ({active, toggleClass, closeDropdown}) => {
+const QtyDropDown = ({active, toggleClass, closeDropdown, buyQty, handleBuyQtyChange}) => {
   // returns range from 0 to max
   const createRange = (max) => {
     return Array.from(Array(99).keys());
@@ -17,14 +17,16 @@ const QtyDropDown = ({active, toggleClass, closeDropdown}) => {
   const wrapperRef = useRef(null);
   alertWhenClickedOutside(wrapperRef, closeDropdown);
 
+
   return (
     <div ref={wrapperRef}>
       <QtyBtn onClick={()=> toggleClass()}>
-        <BtnText>1</BtnText>
+        <BtnText>{buyQty}</BtnText>
         <DropdownArrow>&#8964;</DropdownArrow>
       </QtyBtn>
       <QtyDropdownContent active={active}>
-          {createRange(99).map( number => <QtyNumber number={number + 1} />)}
+          {createRange(99).map( (number, i) => <QtyNumber key={i} number={number + 1}
+          handleBuyQtyChange={handleBuyQtyChange} closeDropdown={closeDropdown}/>)}
         </QtyDropdownContent>
     </div>
   )

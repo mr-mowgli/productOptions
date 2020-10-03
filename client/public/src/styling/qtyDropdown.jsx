@@ -28,6 +28,11 @@ export const QtyBtn = styled.div`
   vertical-align: center;
   :hover { background-color: rgb(237, 237, 237) }
   :focus { background-color: rgb(237, 237, 237) }
+  :active {
+    background-color: rgb(70, 70, 70);
+    color: rgb(254, 254, 254);
+  }
+
 `;
 
 export const BtnText = styled.span`
