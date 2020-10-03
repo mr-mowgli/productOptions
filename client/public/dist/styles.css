@@ -10,3 +10,8 @@ h1 {
 .name {
   font-weight: bold;
 }
+
+.highlightBorder:hover {
+  border: 2px solid green;
+  border-radius: 2px;
+}

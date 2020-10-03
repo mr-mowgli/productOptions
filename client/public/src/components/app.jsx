@@ -66,6 +66,14 @@ const App = () => {
     setSizes(Object.keys(sizes));
   }
 
+  const setActiveColor = (color) => {
+    setColor(color);
+  }
+
+  const setActiveSize = (size) => {
+    setSize(size);
+  }
+
   const getQty = () => {
     for (var product of stock) {
       if (product.color === color && product.size === size) {
@@ -86,13 +94,13 @@ const App = () => {
     getColorsAndSizes();
     getQty();
     // passing in this array as a second parameter re-renders only if one of the elements change
-  }, [store.location, stock.length])
+  }, [store.location, stock.length, size, color])
 
     return (
       <div>
         <Details product={product} />
         <SelectQty buyQty={buyQty} handleBuyQtyChange={handleBuyQtyChange}/>
-        <Options colors={colors} sizes={sizes}/>
+        <Options colors={colors} sizes={sizes} setActiveColor={setActiveColor} setActiveSize={setActiveSize}/>
         <Store store={store} qty={qty}/>
       </div>
     )

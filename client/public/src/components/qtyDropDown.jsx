@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import {QtyDropdownContent, QtyBtn, BtnText, DropdownArrow} from '../styling/qtyDropdown.jsx';
 import QtyNumber from './qtyNumber.jsx';
 
-import alertWhenClickedOutside from '../utils/outsideClick.js'
+import whenClickedOutside from '../utils/outsideClick.js'
 
 
 const QtyDropDown = ({active, toggleClass, closeDropdown, buyQty, handleBuyQtyChange}) => {
@@ -15,7 +15,7 @@ const QtyDropDown = ({active, toggleClass, closeDropdown, buyQty, handleBuyQtyCh
 
   // use a reference to keep track of clicks on/outside of the component
   const wrapperRef = useRef(null);
-  alertWhenClickedOutside(wrapperRef, closeDropdown);
+  whenClickedOutside(wrapperRef, closeDropdown);
 
 
   return (
