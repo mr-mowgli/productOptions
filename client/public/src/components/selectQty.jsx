@@ -25,11 +25,7 @@ const SelectQty = () => {
   return (
     <SelectQtyContainer>
       <SelectQtyTitle>Quantity</SelectQtyTitle>
-      {/* <QtyBtn onClick={()=> toggleClass()}>
-        <BtnText>1</BtnText>
-        <DropdownArrow>&#8964;</DropdownArrow>
-      </QtyBtn> */}
-        <QtyDropDown active={dropdownState.active} toggleClass={toggleClass} closeDropdown= {closeDropdown}/>
+      <QtyDropDown active={dropdownState.active} toggleClass={toggleClass} closeDropdown= {closeDropdown}/>
     </SelectQtyContainer>
   )
 }

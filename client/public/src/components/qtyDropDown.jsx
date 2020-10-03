@@ -8,13 +8,15 @@ import alertWhenClickedOutside from '../utils/outsideClick.js'
 
 
 const QtyDropDown = ({active, toggleClass, closeDropdown}) => {
-  // returns range form 0 to max
+  // returns range from 0 to max
   const createRange = (max) => {
     return Array.from(Array(99).keys());
   }
 
+  // use a reference to keep track of clicks on/outside of the component
   const wrapperRef = useRef(null);
   alertWhenClickedOutside(wrapperRef, closeDropdown);
+
   return (
     <div ref={wrapperRef}>
       <QtyBtn onClick={()=> toggleClass()}>
