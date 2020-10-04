@@ -20,7 +20,7 @@ export const CenterTextBox = styled.div`
 export const Flexbox = styled.div`
   display: flex;
   flex-direction: row wrap;
-  font-size: 14px;
+  font-size: 16px;
 `;
 
 export const Flexcol = styled.div`
@@ -39,5 +39,5 @@ export const Flexrow = styled.div`
 export const Column = styled.div`
   padding-left: 16px;
   padding-right: 16px;
-  width: 334px;
+  width: 304px;
 `;
