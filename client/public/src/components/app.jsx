@@ -15,7 +15,7 @@ const App = () => {
   const [sizes, setSizes] = useState([]);
 
   const [store, setStore] = useState({id: 1});
-  const [product, setProduct] = useState({id: 1});
+  const [product, setProduct] = useState({id: 5});
   const [color, setColor] = useState('red');
   const [size, setSize] = useState('M');
   const [qty, setQty] = useState(0);

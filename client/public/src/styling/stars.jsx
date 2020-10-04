@@ -7,10 +7,11 @@ export const Ratings = styled.div`
   color: #ffffff;
   overflow: visible;
   font-size: 11pt;
-
 `
 
 export const FullStars = styled.div`
+letter-spacing: 3px;
+
   position: absolute;
   left: 0;
   top: 0;
@@ -26,6 +27,8 @@ export const FullStars = styled.div`
 `
 
 export const EmptyStars = styled.div`
+letter-spacing: 3px;
+
   position: relative;
 
   &:before {
@@ -37,10 +40,11 @@ export const EmptyStars = styled.div`
 export const ReviewsCount = styled.span`
   height: 16px;
   position: absolute;
-  left: 78px;
+  top: 3px;
+  left: 92px;
   display: inline;
-  top: 2px;
   border-bottom: 1px solid rgb(116,116,116);
   color: rgb(116,116,116);
   overflow: visible;
+  font-size: 12px;
 `

@@ -1,9 +1,17 @@
 import styled from 'styled-components';
 
+export const SelectedOption = styled.div`
+  font-size: 19px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  span {
+    font-weight: bold;
+  }
+`;
+
 export const ColorsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 0.04fr);
-  margin: 20px 0;
 `;
 
 export const ColorHighlight = styled.div`
@@ -26,11 +34,9 @@ export const Color = styled.div`
 
 export const SizesGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 0.04fr);
-  margin-bottom: 20px 0;
-  grid-row-gap: 0.5ch;
-  grid-column-gap: 0.5ch;
-  margin-bottom: 20px;
+  grid-template-columns: repeat(4, 0.23fr);
+  grid-row-gap: 1.5ch;
+  // grid-column-gap: 0.5ch;
 `;
 
 export const SizeHighlight = styled.div`
@@ -39,11 +45,12 @@ export const SizeHighlight = styled.div`
   width: 50px;
   height: 25px;
   line-height: 25px;
-  // :hover { border: 0.5px solid green; }
 `;
 
 export const Size = styled.div`
   position: relative;
+  width: 63px;
+  height: 28px;
   cursor: pointer;
   background-color: ${props => props.color};
   border: ${props => props.selectedSize ? '2px solid rgb(90, 90, 90)' : '2px solid white'};
@@ -51,6 +58,7 @@ export const Size = styled.div`
   text-align: center;
   font-size: 12px;
   vertical-align: middle;
+  padding-top: 4px;
 
   :active {
     background-color: rgb(40, 40, 40);

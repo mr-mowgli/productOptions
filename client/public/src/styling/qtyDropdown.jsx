@@ -11,19 +11,19 @@ export const SelectQtyContainer = styled.div`
 export const SelectQtyTitle = styled.div`
   position: absolute;
   display:inline;
-  left: 12px;
+  left: 14px;
   top: -8px;
   z-index: 1;
   background-color: white;
   border: 1.5px solid white;
   font-weight: bold;
-  font-size: 12.5px;
   pointer-events: none;
 `;
 
 export const QtyBtn = styled.div`
-  height: 35px;
-  border: 1px solid  rgb(116,116,116);
+  height: 46px;
+  width: 98px;
+  border: 1px solid  rgb(136, 136, 136);
   border-radius: 3px;
   vertical-align: center;
   :hover { background-color: rgb(237, 237, 237) }
@@ -37,22 +37,22 @@ export const QtyBtn = styled.div`
 
 export const BtnText = styled.span`
   position: relative;
-  top: 8px;
-  left: 12px;
-  font-size: 14px;
+  top: 15px;
+  left: 15px;
 `;
 
 export const DropdownArrow = styled.span`
   position: relative;
-  top: 4px;
-  left: 40px;
+  top: 10px;
+  left: 60px;
   font-weight: lighter;
+  color: rgb(136, 136, 136);
 `;
 
 export const QtyDropdownContent = styled.div`
   display: ${props => props.active ? 'show' : 'none'};
   position: absolute;
-  top: 40px;
+  top: 50px;
   background-color: #ffffff;
   min-width: 160px;
   border: 1px solid black;

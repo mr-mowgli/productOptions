@@ -9,7 +9,7 @@ const AddToCart = () => {
   return (
     <AddToCartStyle>
       <AddtoCartFlex>
-        <img src='targetbox.png' alt='targetbox'></img>
+        <img src='https://imgur.com/Zl4BolO.png' alt='targetbox'></img>
         <AddtoCartText>Add to registry</AddtoCartText>
       </AddtoCartFlex>
     </AddToCartStyle>
