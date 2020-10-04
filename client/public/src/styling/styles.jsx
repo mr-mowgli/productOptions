@@ -21,7 +21,16 @@ export const Flexbox = styled.div`
   display: flex;
   flex-direction: row wrap;
   font-size: 16px;
-  min-width: 58%;
+  min-width: 50%;
+`;
+
+export const PickupFlex = styled(Flexbox)`
+  width: min-content;
+`;
+
+export const AddtoCartFlex = styled(Flexbox)`
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Flexcol = styled.div`

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {Flexbox, Flexrow, Flexcol} from '../styling/styles.jsx';
+import {PickupFlex, Flexrow, Flexcol} from '../styling/styles.jsx';
 import {StockLeft, EditBtn, PickupBtnDiv, Pickuptext, StoreLocationStyle} from '../styling/storeStyle.jsx';
 
 const StorePickup = ({qty, store}) => {
@@ -12,7 +12,7 @@ const StorePickup = ({qty, store}) => {
 
   return (
     <Flexrow>
-      <Flexbox>
+      <PickupFlex>
         <Flexcol>
           <div>
             <Pickuptext qty={qty}>{qty > 0 ? 'Pick up today' : 'Out of stock'} </Pickuptext>
@@ -23,7 +23,7 @@ const StorePickup = ({qty, store}) => {
           <EditBtn>Edit store</EditBtn>
           <StockLeft> {qty > 0 ? `Only ${qty} Left` : ''} </StockLeft>
         </Flexcol>
-      </Flexbox>
+      </PickupFlex>
 
       <PickupBtnDiv><button className='pickupBtn'>Pick up here</button></PickupBtnDiv>
     </Flexrow>
