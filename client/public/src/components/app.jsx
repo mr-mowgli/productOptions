@@ -100,7 +100,7 @@ const App = () => {
       <div>
         <Details product={product} />
         <SelectQty buyQty={buyQty} handleBuyQtyChange={handleBuyQtyChange}/>
-        <Options colors={colors} sizes={sizes} setActiveColor={setActiveColor} setActiveSize={setActiveSize}/>
+        <Options colors={colors} sizes={sizes} setActiveColor={setActiveColor} setActiveSize={setActiveSize} activeColor={color} activeSize={size}/>
         <Store store={store} qty={qty}/>
       </div>
     )

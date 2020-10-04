@@ -60,7 +60,8 @@ export const QtyDropdownContent = styled.div`
   padding-left 20px;
   z-index: 1;
   padding: 0 16px;
-
+  height: 320px;
+  overflow: auto;
 `;
 
 export const DropdownNumber = styled.div`
