@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import StorePickup from './storePickup.jsx';
 import StoreDeliveryAvailablity from './storeDeliveryAvailablity.jsx';
+import StoreOrderDelivery from './storeOrderDelivery.jsx';
 
 import {Flexbox, Flexrow, Flexcol} from '../styling/styles.jsx';
 import {StockLeft, EditBtn, PickupBtnDiv, Pickuptext, StoreLocationStyle} from '../styling/storeStyle.jsx';
@@ -13,6 +14,7 @@ const Store = ({store, qty}) => {
     <div>
       <StorePickup qty={qty} store={store}/>
       <StoreDeliveryAvailablity qty={qty} store={store}/>
+      <StoreOrderDelivery qty={qty} store={store}/>
     </div>
   )
 }

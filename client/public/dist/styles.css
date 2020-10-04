@@ -11,3 +11,12 @@ h1 {
   font-weight: bold;
 }
 
+.deliveryData {
+  margin: 0 15px;
+}
+
+.OrderDelivery {
+  background: rgb(247, 247, 247);
+  padding-bottom: 15px;
+  font-size: 14px;
+}

@@ -21,6 +21,7 @@ export const Flexbox = styled.div`
   display: flex;
   flex-direction: row wrap;
   font-size: 16px;
+  min-width: 58%;
 `;
 
 export const Flexcol = styled.div`
