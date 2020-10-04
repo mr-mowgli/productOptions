@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
+import QtyDropDown from './qtyDropdown.jsx';
+
+import {SelectQtyContainer, SelectQtyTitle} from '../styling/qtyDropdown.jsx';
+
+
 const SelectQty = () => {
+  const [dropdownState, setDropDownState] = useState({active: false});
+
+  const toggleClass = () => {
+    var newState = !dropdownState.active;
+    setDropDownState({active: newState});
+  }
+
+  const closeDropdown = () => {
+    setDropDownState({active: false});
+  }
+
+  useEffect( () => {}, [dropdownState]);
+
+
+
   return (
-    <div className='selectQtyContainer'>
-      <div className= 'selectQtyTitle'>Quantity</div>
-      <div className='selectQty'></div>
-    </div>
+    <SelectQtyContainer>
+      <SelectQtyTitle>Quantity</SelectQtyTitle>
+      <QtyDropDown active={dropdownState.active} toggleClass={toggleClass} closeDropdown= {closeDropdown}/>
+    </SelectQtyContainer>
   )
 }
 
 export default SelectQty
+
