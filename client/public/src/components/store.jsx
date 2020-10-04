@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import StorePickup from './storePickup.jsx';
+
+import {Flexbox, Flexrow, Flexcol} from '../styling/styles.jsx';
+import {StockLeft, EditStoreBtn, PickupBtnDiv, Pickuptext, StoreLocationStyle} from '../styling/storeStyle.jsx';
+
 const Store = ({store, qty}) => {
 
-  const capitalize = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-return (
-  <div>
-    <div className='storeLocation'>{store.location ? capitalize(store.location) : ''}</div>
-    <div className='qty'>{qty} Left</div>
-  </div>
-)
+  return (
+    <div>
+      <StorePickup qty={qty} store={store}/>
+    </div>
+  )
 }
 
 export default Store;
