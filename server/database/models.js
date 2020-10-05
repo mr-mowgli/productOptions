@@ -32,6 +32,9 @@ const Stock = db.define('Stock', {
   color: {
     type: DataTypes.STRING
   },
+  colorUrl: {
+    type: DataTypes.STRING
+  },
   size: {
     type: DataTypes.STRING
   },

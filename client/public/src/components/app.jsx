@@ -6,7 +6,7 @@ import Details from './details.jsx';
 import SelectQty from './selectQty.jsx'
 import Options from './options.jsx';
 import Store from './store.jsx';
-import {} from '../styling/styles.jsx';
+import {Flexbox, Column} from '../styling/styles.jsx';
 
 const App = () => {
   const [stores, setStores] = useState([]);
@@ -15,10 +15,14 @@ const App = () => {
   const [sizes, setSizes] = useState([]);
 
   const [store, setStore] = useState({id: 1});
-  const [product, setProduct] = useState({id: 1});
-  const [color, setColor] = useState('red');
+  const [product, setProduct] = useState({id: 3});
+  const [color, setColor] = useState('White');
   const [size, setSize] = useState('M');
   const [qty, setQty] = useState(0);
+  const [stockQtys, setStockQtys] = useState({});
+
+  const [buyQty, setBuyQty] = useState(1);
+  const [cart, setCart] = useState(0);
 
   // get the products general details such as price, name and reviews
   const getProduct = async (productId) => {
@@ -52,16 +56,49 @@ const App = () => {
 
     // extract colors and sizes options from the product stock
   const getColorsAndSizes = () => {
-    var colors = {};
+    var colorsTracker = {};
+    var colors = [];
+    var stockTotals = {};
+    stockTotals.total = 0;
+
     var sizes = {};
+
     stock.forEach( item => {
-      // adding colors and sizes keys only once, in one iteration
-      if ( !colors[item.color] ) { colors[item.color] = true }
+      // in one iteration, adding the colors, and quantities for each size/color
+      if ( !colorsTracker[item.color] ) {
+        colorsTracker[item.color] = true;
+        colors.push([item.color, item.colorUrl]);
+        stockTotals[item.color] = {total: 0};
+      }
+      stockTotals[item.color].total += item.qty;
+      stockTotals.total += item.qty;
+
+      if (stockTotals[item.color][item.size] === undefined) {
+        stockTotals[item.color][item.size] = item.qty;
+      } else {
+        stockTotals[item.color][item.size] += item.qty;
+      }
+
       if ( !sizes[item.size] ) { sizes[item.size] = true }
     });
-    // extracting as arrays
-    setColors(Object.keys(colors));
+
+    setStockQtys(stockTotals);
+    setColors(colors);
+
+    // extracting as an array
     setSizes(Object.keys(sizes));
+  }
+
+  const setActiveColor = (color) => {
+    setColor(color);
+  }
+
+  const setActiveSize = (size) => {
+    setSize(size);
+  }
+
+  const addToShopCart = (qty) => {
+    setCart(qty);
   }
 
   const getQty = () => {
@@ -72,6 +109,10 @@ const App = () => {
      }
   }
 
+  const handleBuyQtyChange = (number) => {
+    setBuyQty(number);
+  }
+
   useEffect( () => {
     getProduct(product.id);
     getStore(store.id);
@@ -80,17 +121,21 @@ const App = () => {
     getColorsAndSizes();
     getQty();
     // passing in this array as a second parameter re-renders only if one of the elements change
-  }, [store.location, stock.length])
+  }, [store.location, stock.length, size, color])
 
     return (
-      <div>
-        <Details product={product} />
-        <SelectQty />
-        <Options colors={colors} sizes={sizes}/>
-        <Store store={store} qty={qty}/>
-      </div>
+      <Flexbox>
+        <Column>
+          <Details product={product} />
+          <SelectQty buyQty={buyQty} handleBuyQtyChange={handleBuyQtyChange}/>
+          <Options colors={colors} sizes={sizes} setActiveColor={setActiveColor} setActiveSize={setActiveSize} activeColor={color} activeSize={size} qty={stockQtys}/>
+        </Column>
+
+        <Column>
+          <Store store={store} qty={qty} buyQty={buyQty} addToShopCart={addToShopCart}/>
+        </Column>
+      </Flexbox>
     )
 }
-
 
 export default App;

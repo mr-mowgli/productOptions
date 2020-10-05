@@ -2,11 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 
 
-const alertWhenClickedOutside = (ref, cb) => {
+const whenClickedOutside = (ref, cb) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
-        console.log('outside click!');
         cb();
       }
     }
@@ -18,4 +17,4 @@ const alertWhenClickedOutside = (ref, cb) => {
   }, [ref]);
 }
 
-export default alertWhenClickedOutside;
+export default whenClickedOutside;

@@ -1,18 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Store = ({store, qty}) => {
+import StorePickup from './storePickup.jsx';
+import StoreDeliveryAvailablity from './storeDeliveryAvailablity.jsx';
+import StoreOrderDelivery from './storeOrderDelivery.jsx';
+import StoreAddToCart from './storeAddToCart.jsx';
 
-  const capitalize = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+const Store = ({store, qty, addToShopCart, buyQty}) => {
 
-return (
-  <div>
-    <div className='storeLocation'>{store.location ? capitalize(store.location) : ''}</div>
-    <div className='qty'>{qty} Left</div>
-  </div>
-)
+  return (
+    <div>
+      <StorePickup qty={qty} store={store}/>
+      <StoreDeliveryAvailablity qty={qty} store={store}/>
+      <StoreOrderDelivery qty={qty} store={store}/>
+      <StoreAddToCart buyQty={buyQty} addToShopCart={addToShopCart}/>
+    </div>
+  )
 }
 
 export default Store;

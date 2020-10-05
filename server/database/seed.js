@@ -8,6 +8,7 @@ const faker = require('faker');
   /*
     to wipe and replace all data:
     1) run in Mysql terminal:
+    SET FOREIGN_KEY_CHECKS = 0;
     TRUNCATE TABLE stocks;TRUNCATE TABLE products;TRUNCATE TABLE stores;
     2) run:
     node database/seed.js
@@ -16,6 +17,7 @@ const faker = require('faker');
 // ------------------------- actual data -------------------------:
   var stores = ['boulder', 'longmont', 'superior', 'westminister', 'aurora'];
   var products = [
+  `Men's Standard Fit French Terry Hoodie Sweatshirt - Goodfellow & Co™`,
   `Men's Standard Fit Hoodie Sweatshirt - Goodfellow & Co™`,
   `Hanes Men's Ultimate Cotton Sweatshirt`,
   `Hanes Men's EcoSmart Fleece Pullover Hooded Sweatshirt`,
@@ -24,8 +26,15 @@ const faker = require('faker');
   ];
   // can make colors an array of arrays, each one having colors for the
   // corresponding product from the outer product loop
-  var colors = ['red', 'blue', 'green', 'black', 'white'];
-  var sizes = ['S', 'M', 'L', 'XL', 'XXL', 'XXL'];
+  var colors = [
+    ['White', 'https://imgur.com/xvJ98fe.png'],
+    ['Blue', 'https://imgur.com/zReIoca.png'],
+    ['Green', 'https://imgur.com/SRGlFjx.png'],
+    ['Peach', 'https://imgur.com/6dpqKHe.png'],
+    ['Red', 'https://imgur.com/y81ZoDc.png'],
+    ['Gold', 'https://imgur.com/L7cseNz.png']
+  ];
+  var sizes = ['S', 'M', 'L', 'XL', 'XXL', '2XL'];
 
   for (var st = 0; st < stores.length; st++) {
     var newStore = await Store.findOne({ where: {location: stores[st]} });
@@ -38,10 +47,10 @@ const faker = require('faker');
      for (var p = 0; p < products.length; p++) {
       // price between 10$ - 20$
       var price = Math.ceil(Math.random() * 10) + 10 - 0.01;
-      // reviews average between 3-5 stars
-      var reviewsAvg = parseFloat(((Math.random() * 2) + 3).toFixed(2))
-      // review counts between 0-35
-      var reviewCount = Math.floor(Math.random() * 35);
+      // reviews average between 2-5 stars
+      var reviewsAvg = parseFloat(((Math.random() * 3) + 2).toFixed(2))
+      // review counts between 0-135
+      var reviewCount = Math.floor(Math.random() * 135);
 
       var newProduct = await Product.findOne({ where: {name: products[p]} });
       // only create the product if it doesn't exist in the table (avoid making duplicates)
@@ -60,9 +69,14 @@ const faker = require('faker');
          for (var s = 0; s < sizes.length; s++) {
 
            // add product with random quantity
-           var quantity = Math.floor(Math.random() * 5)
+           var quantity = Math.floor(Math.random() * 5);
+           // out of stock for all sizes for these two colors
+           if (colors[c][0] === 'Green' || colors[c][0] === 'Red'){
+            quantity = 0;
+           }
            const newStock = await Stock.create({
-             color: colors[c],
+             color: colors[c][0],
+             colorUrl: colors[c][1],
              size: sizes[s],
              qty: quantity
            });
@@ -97,6 +111,7 @@ const faker = require('faker');
             var quantity = Math.floor(Math.random() * 5);
             const fakeStock = await Stock.create({
               color: faker.commerce.color(),
+              colorUrl: faker.image.cats(),
               size: sizes[s],
               qty: quantity
             })
