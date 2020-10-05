@@ -25,7 +25,7 @@ const StorePickup = ({qty, store}) => {
         </Flexcol>
       </PickupFlex>
 
-      <PickupBtnDiv><button className='pickupBtn'>Pick up here</button></PickupBtnDiv>
+      <PickupBtnDiv><button>Pick up here</button></PickupBtnDiv>
     </Flexrow>
   )
 }

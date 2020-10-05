@@ -58,7 +58,7 @@ export const QtyDropdownContent = styled.div`
   border: 1px solid black;
   border-radius: 4px;
   padding-left 20px;
-  z-index: 1;
+  z-index: 3;
   padding: 0 16px;
   height: 320px;
   overflow: auto;

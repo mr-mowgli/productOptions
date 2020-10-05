@@ -15,12 +15,14 @@ const App = () => {
   const [sizes, setSizes] = useState([]);
 
   const [store, setStore] = useState({id: 1});
-  const [product, setProduct] = useState({id: 5});
+  const [product, setProduct] = useState({id: 3});
   const [color, setColor] = useState('White');
   const [size, setSize] = useState('M');
   const [qty, setQty] = useState(0);
+  const [stockQtys, setStockQtys] = useState({});
 
   const [buyQty, setBuyQty] = useState(1);
+  const [cart, setCart] = useState(0);
 
   // get the products general details such as price, name and reviews
   const getProduct = async (productId) => {
@@ -56,19 +58,31 @@ const App = () => {
   const getColorsAndSizes = () => {
     var colorsTracker = {};
     var colors = [];
+    var stockTotals = {};
+    stockTotals.total = 0;
 
     var sizes = {};
 
     stock.forEach( item => {
-      // adding colors and sizes keys only once, in one iteration
+      // in one iteration, adding the colors, and quantities for each size/color
       if ( !colorsTracker[item.color] ) {
         colorsTracker[item.color] = true;
         colors.push([item.color, item.colorUrl]);
+        stockTotals[item.color] = {total: 0};
+      }
+      stockTotals[item.color].total += item.qty;
+      stockTotals.total += item.qty;
+
+      if (stockTotals[item.color][item.size] === undefined) {
+        stockTotals[item.color][item.size] = item.qty;
+      } else {
+        stockTotals[item.color][item.size] += item.qty;
       }
 
       if ( !sizes[item.size] ) { sizes[item.size] = true }
     });
 
+    setStockQtys(stockTotals);
     setColors(colors);
 
     // extracting as an array
@@ -81,6 +95,10 @@ const App = () => {
 
   const setActiveSize = (size) => {
     setSize(size);
+  }
+
+  const addToShopCart = (qty) => {
+    setCart(qty);
   }
 
   const getQty = () => {
@@ -110,11 +128,11 @@ const App = () => {
         <Column>
           <Details product={product} />
           <SelectQty buyQty={buyQty} handleBuyQtyChange={handleBuyQtyChange}/>
-          <Options colors={colors} sizes={sizes} setActiveColor={setActiveColor} setActiveSize={setActiveSize} activeColor={color} activeSize={size}/>
+          <Options colors={colors} sizes={sizes} setActiveColor={setActiveColor} setActiveSize={setActiveSize} activeColor={color} activeSize={size} qty={stockQtys}/>
         </Column>
 
         <Column>
-          <Store store={store} qty={qty}/>
+          <Store store={store} qty={qty} buyQty={buyQty} addToShopCart={addToShopCart}/>
         </Column>
       </Flexbox>
     )

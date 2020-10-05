@@ -11,24 +11,24 @@ export const SelectedOption = styled.div`
 
 export const ColorsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 0.04fr);
+  grid-template-columns: repeat(5, 0.19fr);
 `;
 
 export const ColorHighlight = styled.div`
   cursor: pointer;
   border: ${props => props.selectedColor ? '2px solid green' : '2px solid white' };
   border-radius: 2px;
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   :hover { border: 2px solid green }
   :active { background-color: rgb(20, 20, 20) }
 `;
 
 export const Color = styled.img`
-  height: 35px;
+  width: 42px;
   border: 0.5px solid rgb(90, 90, 90);
   border-radius: 2px;
-  margin: 5px;
+  margin: 3px;
 `;
 
 export const SizesGrid = styled.div`
@@ -59,8 +59,23 @@ export const Size = styled.div`
   vertical-align: middle;
   padding-top: 4px;
 
+  :after {
+    ${({sizeQtyLeft}) => sizeQtyLeft > 0 ? '' :
+    `content: "";
+    position: absolute;
+    top: 47%;
+    transform: translateY(-50%);
+    left: 0px;
+    right: 0px;
+    height: 1px;
+    background: rgb(102, 102, 102);
+    width: 80%;
+    margin: auto;`
+    }
+  }
+
   :active {
-    background-color: rgb(40, 40, 40);
+    background-color: rgb(51, 51, 51);
   }
 
   :hover {
@@ -79,4 +94,16 @@ export const Size = styled.div`
     left: 1px;
     right: 1px;
   }
+`;
+
+export const ColorOutOfStock = styled.span`
+  width: 40px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.95);
+  z-index: 2;
+  font-size: 10px;
+  text-align: center;
 `;

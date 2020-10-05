@@ -47,4 +47,5 @@ export const ReviewsCount = styled.span`
   color: rgb(116,116,116);
   overflow: visible;
   font-size: 12px;
+  cursor: default;
 `

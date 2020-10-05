@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-
 import {Flexbox, Flexrow, Flexcol} from '../styling/styles.jsx';
 import {StockLeft, EditBtn, PickupBtnDiv, Pickuptext, StoreLocationStyle, DeliveryData, OrderDelivery} from '../styling/storeStyle.jsx';
 
@@ -10,7 +9,6 @@ const StoreOrderDelivery = ({qty, store}) => {
   const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-
   return (
     <OrderDelivery>
       <Flexrow>
@@ -24,7 +22,7 @@ const StoreOrderDelivery = ({qty, store}) => {
         <PickupBtnDiv><button>Ship it</button></PickupBtnDiv>
       </Flexrow>
 
-      <DeliveryData><span>Get it by Fri, Oct 9</span> with free standard shipping on $35 orders</DeliveryData>
+      <DeliveryData><span>Get it by tomorrow</span> with free standard shipping on $35 orders</DeliveryData>
     </OrderDelivery>
   )
 }

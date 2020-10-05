@@ -51,3 +51,7 @@ export const Column = styled.div`
   padding-right: 16px;
   width: 304px;
 `;
+
+export const RelativePos = styled.div`
+  position: relative;
+`;
