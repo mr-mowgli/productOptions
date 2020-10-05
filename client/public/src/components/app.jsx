@@ -16,7 +16,7 @@ const App = () => {
 
   const [store, setStore] = useState({id: 1});
   const [product, setProduct] = useState({id: 5});
-  const [color, setColor] = useState('red');
+  const [color, setColor] = useState('White');
   const [size, setSize] = useState('M');
   const [qty, setQty] = useState(0);
 
@@ -54,15 +54,24 @@ const App = () => {
 
     // extract colors and sizes options from the product stock
   const getColorsAndSizes = () => {
-    var colors = {};
+    var colorsTracker = {};
+    var colors = [];
+
     var sizes = {};
+
     stock.forEach( item => {
       // adding colors and sizes keys only once, in one iteration
-      if ( !colors[item.color] ) { colors[item.color] = true }
+      if ( !colorsTracker[item.color] ) {
+        colorsTracker[item.color] = true;
+        colors.push([item.color, item.colorUrl]);
+      }
+
       if ( !sizes[item.size] ) { sizes[item.size] = true }
     });
-    // extracting as arrays
-    setColors(Object.keys(colors));
+
+    setColors(colors);
+
+    // extracting as an array
     setSizes(Object.keys(sizes));
   }
 

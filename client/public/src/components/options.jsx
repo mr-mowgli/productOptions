@@ -10,8 +10,8 @@ const Options = ({colors, sizes, setActiveColor, setActiveSize, activeColor, act
       <SelectedOption><span>color</span> {activeColor}</SelectedOption>
       <ColorsGrid>
         {colors.map((color, i) =>
-        <ColorHighlight selectedColor={color === activeColor} key={i} onClick={() => setActiveColor(color)}>
-          <Color color={color}></Color>
+        <ColorHighlight selectedColor={color[0] === activeColor} key={i} onClick={() => setActiveColor(color[0])}>
+          <Color src={color[1]}></Color>
         </ColorHighlight>
           )}
       </ColorsGrid>

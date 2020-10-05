@@ -11,7 +11,7 @@ export const SelectedOption = styled.div`
 
 export const ColorsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 0.04fr);
+  grid-template-columns: repeat(5, 0.04fr);
 `;
 
 export const ColorHighlight = styled.div`
@@ -24,9 +24,8 @@ export const ColorHighlight = styled.div`
   :active { background-color: rgb(20, 20, 20) }
 `;
 
-export const Color = styled.div`
+export const Color = styled.img`
   height: 35px;
-  background-color: ${props => props.color};
   border: 0.5px solid rgb(90, 90, 90);
   border-radius: 2px;
   margin: 5px;
