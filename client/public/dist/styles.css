@@ -1,16 +1,5 @@
-#productOptions {
+#ProductOptions {
   font-family: Arial, sans-serif;
   color: rgb(54, 54, 54);
 }
 
-h1 {
-  color: rgb(54, 54, 54);
-}
-
-.name {
-  font-weight: bold;
-}
-
-.relativePos {
-  position: relative;
-}
