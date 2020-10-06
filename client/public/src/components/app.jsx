@@ -8,7 +8,7 @@ import Options from './options.jsx';
 import Store from './store.jsx';
 import {Flexbox, Column} from '../styling/styles.jsx';
 
-const App = () => {
+const ProductOptions = () => {
   const [stores, setStores] = useState([]);
   const [stock, setStock] = useState([]);
   const [colors, setColors] = useState([]);
@@ -26,28 +26,28 @@ const App = () => {
 
   // get the products general details such as price, name and reviews
   const getProduct = async (productId) => {
-    const response = await axios.get(`/products/${productId}`);
+    const response = await axios.get(`http://localhost:3002/products/${productId}`);
     const productData = response.data;
     setProduct(productData);
   }
 
   // get a store's id and location
   const getStore = async (storeId) => {
-    const response = await axios.get(`/stores/${storeId}`);
+    const response = await axios.get(`http://localhost:3002/stores/${storeId}`);
     const storeData = response.data;
     setStore(storeData);
   }
 
   // get a list of all the stores (names and ids)
   const getStores = async () => {
-    const response = await axios.get(`/stores`);
+    const response = await axios.get(`http://localhost:3002/stores`);
     const storesData = response.data;
     setStores(storesData);
   }
 
   // get all available stock for the selected item in the selected store
   const getStock = async (productId) => {
-    const response = await axios.get(`/stock/${productId}`);
+    const response = await axios.get(`http://localhost:3002/stock/${productId}`);
     const stockData = response.data;
     // filter to only have the selected store's stock for the selected product
     const productStock = stockData.filter(item => item.location === store.location);
@@ -138,4 +138,4 @@ const App = () => {
     )
 }
 
-export default App;
+export default ProductOptions;
