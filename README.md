@@ -17,7 +17,7 @@ run  `npm install` to install dependencies
 
 Make sure to have MySQL installed then run `MySQL` then run the following in a MySQL terminal:
 
-`CREATE options;USE options;`
+`CREATE DATABASE options;USE options;`
 
 run `npm run seed`
 
