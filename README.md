@@ -7,7 +7,9 @@
 
 ------
 
-### Installation:
+### Installation
+
+#### Server:
 
 Go into server folder
 
@@ -26,6 +28,8 @@ if getting any errors:
 run `npm run seed` again
 
 ------------------
+
+#### Client:
 
 Go into client folder
 
