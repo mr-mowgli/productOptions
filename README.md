@@ -27,7 +27,6 @@ if getting any errors:
 
 run `npm run seed` again
 
-------------------
 
 #### Client:
 
