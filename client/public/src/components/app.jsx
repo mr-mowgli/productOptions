@@ -6,7 +6,7 @@ import Details from './details.jsx';
 import SelectQty from './selectQty.jsx'
 import Options from './options.jsx';
 import Store from './store.jsx';
-import {Flexbox, Column} from '../styling/styles.jsx';
+import {ProductOptionsStyling, Flexbox, Column} from '../styling/styles.jsx';
 
 const ProductOptions = () => {
   const [stores, setStores] = useState([]);
@@ -124,17 +124,19 @@ const ProductOptions = () => {
   }, [store.location, stock.length, size, color])
 
     return (
-      <Flexbox>
-        <Column>
-          <Details product={product} />
-          <SelectQty buyQty={buyQty} handleBuyQtyChange={handleBuyQtyChange}/>
-          <Options colors={colors} sizes={sizes} setActiveColor={setActiveColor} setActiveSize={setActiveSize} activeColor={color} activeSize={size} qty={stockQtys}/>
-        </Column>
+      <ProductOptionsStyling>
+        <Flexbox>
+          <Column>
+            <Details product={product} />
+            <SelectQty buyQty={buyQty} handleBuyQtyChange={handleBuyQtyChange}/>
+            <Options colors={colors} sizes={sizes} setActiveColor={setActiveColor} setActiveSize={setActiveSize} activeColor={color} activeSize={size} qty={stockQtys}/>
+          </Column>
 
-        <Column>
-          <Store store={store} qty={qty} buyQty={buyQty} addToShopCart={addToShopCart}/>
-        </Column>
-      </Flexbox>
+          <Column>
+            <Store store={store} qty={qty} buyQty={buyQty} addToShopCart={addToShopCart}/>
+          </Column>
+        </Flexbox>
+      </ProductOptionsStyling>
     )
 }
 

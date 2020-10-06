@@ -7,6 +7,11 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
+export const ProductOptionsStyling = styled.div`
+  font-family: Arial, sans-serif;
+  color: rgb(54, 54, 54);
+`;
+
 export const Price = styled.h2`
   font-weight: bold;
   margin: 10px 0;
