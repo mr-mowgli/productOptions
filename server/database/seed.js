@@ -122,4 +122,3 @@ const faker = require('faker');
       }
     }
 })();
-

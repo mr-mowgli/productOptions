@@ -16,7 +16,7 @@ const StorePickup = ({qty, store}) => {
         <Flexcol>
           <div>
             <Pickuptext qty={qty}>{qty > 0 ? 'Pick up today' : 'Out of stock'} </Pickuptext>
-            at&nbsp;
+            {''}
             <StoreLocationStyle>{store.location ? capitalize(store.location) : ''} </StoreLocationStyle>
           </div>
 
