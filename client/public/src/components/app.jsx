@@ -9,13 +9,14 @@ import Store from './store.jsx';
 import {ProductOptionsStyling, Flexbox, Column} from '../styling/styles.jsx';
 
 const ProductOptions = () => {
+  const urlProductId = window.location.pathname.slice(1) || 1;
   const [stores, setStores] = useState([]);
   const [stock, setStock] = useState([]);
   const [colors, setColors] = useState([]);
   const [sizes, setSizes] = useState([]);
 
   const [store, setStore] = useState({id: 1});
-  const [product, setProduct] = useState({id: 3});
+  const [product, setProduct] = useState({id: urlProductId});
   const [color, setColor] = useState('White');
   const [size, setSize] = useState('M');
   const [qty, setQty] = useState(0);
