@@ -4,7 +4,7 @@ const db = new Sequelize(
   'options', 'user', 'password', {
     host: 'localhost',
     // can try port number
-    // port: 3306,
+    port: 3306,
     dialect: 'mysql'
   });
 
