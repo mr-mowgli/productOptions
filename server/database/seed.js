@@ -143,5 +143,5 @@ const faker = require('faker');
     //       }
     //     }
     //   }
-    // }
+    }
 })();
