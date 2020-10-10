@@ -143,6 +143,6 @@ const faker = require('faker');
     //       }
     //     }
     //   }
-    // }
+    }
 })();
 
