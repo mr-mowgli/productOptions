@@ -97,13 +97,13 @@ const faker = require('faker');
                  colorUrl: colors[c][1],
                  size: sizes[s],
                  qty: quantity
-               });
+                 // set the relationships between stock/store and stock/product
+                });
+                await newStock.setStore(newStore);
+                await newStock.setProduct(newProduct);
              } catch (e) {
                console.log(e);
              }
-             // set the relationships between stock/store and stock/product
-             await newStock.setStore(newStore);
-             await newStock.setProduct(newProduct);
             }
          }
        }
