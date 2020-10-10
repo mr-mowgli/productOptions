@@ -36,15 +36,22 @@ const faker = require('faker');
   ];
   var sizes = ['S', 'M', 'L', 'XL', 'XXL', '2XL'];
 
-  try {
 
-    for (var st = 0; st < stores.length; st++) {
+  for (var st = 0; st < stores.length; st++) {
+    try {
       var newStore = await Store.findOne({ where: {location: stores[st]} });
+    } catch (error) {
+      console.error(error);
+    }
       // only create the store if it doesn't exist in the table (avoid making duplicates)
       if (newStore === null) {
-        newStore = await Store.create({
-          location: stores[st]
-        });
+        try {
+          newStore = await Store.create({
+            location: stores[st]
+          });
+        catch (error) {
+            console.error(error);
+        }
       }
        for (var p = 0; p < products.length; p++) {
         // price between 10$ - 20$
@@ -54,15 +61,23 @@ const faker = require('faker');
         // review counts between 0-135
         var reviewCount = Math.floor(Math.random() * 135);
 
-        var newProduct = await Product.findOne({ where: {name: products[p]} });
+        try {
+          var newProduct = await Product.findOne({ where: {name: products[p]} });
+        } catch (error) {
+          console.error(error);
+        }
         // only create the product if it doesn't exist in the table (avoid making duplicates)
         if (newProduct === null) {
-          newProduct = await Product.create({
-            name: products[p],
-            price: price,
-            reviews: reviewsAvg,
-            reviewCount: reviewCount
-           });
+          try {
+            newProduct = await Product.create({
+              name: products[p],
+              price: price,
+              reviews: reviewsAvg,
+              reviewCount: reviewCount
+             });
+          } catch (error) {
+            console.error(error);
+          }
         }
 
          // loop over colors
@@ -76,12 +91,16 @@ const faker = require('faker');
              if (colors[c][0] === 'Green' || colors[c][0] === 'Red'){
               quantity = 0;
              }
-             const newStock = await Stock.create({
-               color: colors[c][0],
-               colorUrl: colors[c][1],
-               size: sizes[s],
-               qty: quantity
-             });
+             try {
+               const newStock = await Stock.create({
+                 color: colors[c][0],
+                 colorUrl: colors[c][1],
+                 size: sizes[s],
+                 qty: quantity
+               });
+             } catch (error) {
+               console.error(error);
+             }
              // set the relationships between stock/store and stock/product
              await newStock.setStore(newStore);
              await newStock.setProduct(newProduct);
@@ -89,9 +108,7 @@ const faker = require('faker');
          }
        }
       }
-  } catch (error) {
-    console.error(error);
-  }
+
 
 
     // // ------------------------- faker data -------------------------:
