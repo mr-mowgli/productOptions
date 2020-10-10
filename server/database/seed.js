@@ -49,10 +49,10 @@ const faker = require('faker');
           newStore = await Store.create({
             location: stores[st]
           });
-        catch (e) {
-            console.log(e);
+
+        } catch (e) {
+          console.log(e);
         }
-      }
        for (var p = 0; p < products.length; p++) {
         // price between 10$ - 20$
         var price = Math.ceil(Math.random() * 10) + 10 - 0.01;
