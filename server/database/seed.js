@@ -40,8 +40,8 @@ const faker = require('faker');
   for (var st = 0; st < stores.length; st++) {
     try {
       var newStore = await Store.findOne({ where: {location: stores[st]} });
-    } catch (error) {
-      console.error(error);
+    } catch (e) {
+      console.log(e);
     }
       // only create the store if it doesn't exist in the table (avoid making duplicates)
       if (newStore === null) {
@@ -49,8 +49,8 @@ const faker = require('faker');
           newStore = await Store.create({
             location: stores[st]
           });
-        catch (error) {
-            console.error(error);
+        catch (e) {
+            console.log(e);
         }
       }
        for (var p = 0; p < products.length; p++) {
@@ -63,8 +63,8 @@ const faker = require('faker');
 
         try {
           var newProduct = await Product.findOne({ where: {name: products[p]} });
-        } catch (error) {
-          console.error(error);
+        } catch (e) {
+          console.log(e);
         }
         // only create the product if it doesn't exist in the table (avoid making duplicates)
         if (newProduct === null) {
@@ -75,8 +75,8 @@ const faker = require('faker');
               reviews: reviewsAvg,
               reviewCount: reviewCount
              });
-          } catch (error) {
-            console.error(error);
+          } catch (e) {
+            console.log(e);
           }
         }
 
@@ -98,8 +98,8 @@ const faker = require('faker');
                  size: sizes[s],
                  qty: quantity
                });
-             } catch (error) {
-               console.error(error);
+             } catch (e) {
+               console.log(e);
              }
              // set the relationships between stock/store and stock/product
              await newStock.setStore(newStore);
