@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+
 import ReactDOM from 'react-dom';
 
-import QtyDropDown from './qtyDropdown.jsx';
+import QtyDropDown from './qtyDropDown.jsx';
 
 import {SelectQtyContainer, SelectQtyTitle} from '../styling/qtyDropdown.jsx';
 
