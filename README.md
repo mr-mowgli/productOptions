@@ -23,7 +23,8 @@ run `npm run seed`
 
 if getting any errors: 
 
-`SET FOREIGN_KEY_CHECKS = 0;TRUNCATE TABLE stocks;TRUNCATE TABLE products;TRUNCATE TABLE stores;`
+
+`USE options;SET FOREIGN_KEY_CHECKS = 0;TRUNCATE TABLE Stocks;TRUNCATE TABLE Products;TRUNCATE TABLE Stores;`
 
 run `npm run seed` again
 
