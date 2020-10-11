@@ -16,11 +16,19 @@ app.use(express.static(path.join(__dirname, '../client/public/dist')))
 
 // getting all products data from DB
 app.get('/products', async (req, res) => {
-  const data = await db.Product.findAll({
-    attributes: {exclude: ['createdAt', 'updatedAt']}
-  })
-    res.send(data);
-  })
+    try {		
+      const data = await db.Product.findAll({
+        attributes: {exclude: ['createdAt', 'updatedAt']}
+      })
+      res.send(data);
+    } catch (e) {
+    console.error(e)
+    } 
+})
+
+
+
+    
 
   // getting a specific product's data from the DB
 app.get('/products/:productId', async (req, res) => {
@@ -36,15 +44,20 @@ app.get('/products/:productId', async (req, res) => {
 
 // get all available stock using raw SQL query with inner joins
 app.get('/stock', async (req, res) => {
+  try {
 
   const stocks = await sequelize.query("\
-  SELECT stocks.id, products.name, stores.location, stocks.color, \
-  stocks.size, stocks.qty, products.id as productId \
-  FROM stocks INNER JOIN stores ON stores.id = stocks.storeId \
-  INNER JOIN products ON stocks.productId = products.id",
+  SELECT Stocks.id, Products.name, Stores.location, Stocks.color, \
+  Stocks.size, Stocks.qty, Products.id as productId \
+  FROM Stocks INNER JOIN Stores ON Stores.id = Stocks.storeId \
+  INNER JOIN Products ON Stocks.productId = Products.id",
   {type: QueryTypes.SELECT});
 
     await res.send(stocks);
+  } catch (e) {
+    console.log(e);
+  }
+
   })
 
 
@@ -52,11 +65,11 @@ app.get('/stock', async (req, res) => {
 app.get('/stock/:productId', async (req, res) => {
 
   const stocks = await sequelize.query(`\
-  SELECT stocks.id, products.name, stores.location, stocks.color, \
-  stocks.colorUrl, stocks.size, stocks.qty, products.id as productId \
-  FROM stocks INNER JOIN stores ON stores.id = stocks.storeId \
-  INNER JOIN products ON stocks.productId = products.id \
-  WHERE stocks.productId = ${[req.params.productId]}`,
+  SELECT Stocks.id, Products.name, Stores.location, Stocks.color, \
+  Stocks.colorUrl, Stocks.size, Stocks.qty, Products.id as productId \
+  FROM Stocks INNER JOIN Stores ON Stores.id = Stocks.storeId \
+  INNER JOIN Products ON Stocks.productId = Products.id \
+  WHERE Stocks.productId = ${[req.params.productId]}`,
   {type: QueryTypes.SELECT});
 
     await res.send(stocks);
