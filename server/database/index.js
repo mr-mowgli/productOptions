@@ -1,10 +1,10 @@
 const {Sequelize, DataTypes} = require('sequelize');
 
 const db = new Sequelize(
-  'options', 'root', '', {
-    host: '127.0.0.1',
+  'options', 'tarjay', '', {
+    host: 'localhost',
     // can try port number
-    port: 3306,
+    // port: 3306,
     dialect: 'mysql'
   });
 

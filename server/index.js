@@ -8,27 +8,130 @@ const path = require('path');
 const { QueryTypes } = require('sequelize');
 const sequelize = require('./database/index.js');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 app.use(cors());
-
+app.use(bodyParser());
 app.use(express.static(path.join(__dirname, '../client/public/dist')))
+
+
+// ------------------------------------------------------- //
+// ------------- SDC ADDITIONS TO CODEBASE --------------- //
+// ------------------------------------------------------- //
+
+// to display content based on product ID in URL path e.g. localhost:3002/4
+app.use('/:productId', express.static(path.join(__dirname, '../client/public/dist')))
+
+// helper functions
+const findProduct = async function(prodId) {
+  const productData = await db.Product.findAll({
+    where: {
+      id: prodId
+    },
+    attributes: {exclude: ['createdAt', 'updatedAt']}
+  })
+  return productData
+}
+
+const updateProduct = function(prodId, prodInfo) {
+  db.Product.update({
+    name: prodInfo.name,
+    price: prodInfo.price,
+    reviews: prodInfo.reviews,
+    reviewCount: prodInfo.reviewCount
+  }, {
+    where: {
+      id: prodId
+    }
+  });
+}
+
+const deleteProduct = function(prodId) {
+  db.Product.destroy({
+    where: {
+      id: prodId
+    }
+  });
+}
+
+
+// CREATE
+app.post('/api/products', async (req, res) => {
+  try {
+    db.Product.create({
+      name: req.body.name,
+      price: req.body.price,
+      reviews: req.body.reviews,
+      reviewCount: req.body.reviewCount
+    })
+    res.send('success')
+  } catch (e) {
+    console.error(e)
+  }
+})
+
+app.post('/api/stock', async (req, res) => {
+  try {
+    db.Stock.create({
+      color: req.body.color,
+      colorUrl: req.body.colorUrl,
+      size: req.body.size,
+      qty: req.body.qty,
+      ProductId: req.body.ProductId,
+      StoreId: req.body.StoreId
+    })
+    res.send('success')
+  } catch (e) {
+    console.error(e)
+  }
+})
+
+// READ
+app.get('/api/products/:prodId', async (req, res) => {
+  try {
+    const data = await findProduct(req.params.prodId);
+    res.send(data)
+  } catch (e) {
+    console.error(e)
+  }
+})
+
+// UPDATE
+app.put('/api/products/:prodId', async (req, res) => {
+  try {
+    await updateProduct(req.params.prodId, req.body)
+    res.end()
+  } catch (e) {
+    console.error(e)
+  }
+})
+
+// DELETE
+app.delete('/api/products/:prodId', async (req, res) => {
+  try {
+    await deleteProduct(req.params.prodId);
+    res.end();
+  } catch (e) {
+    console.error(e)
+  }
+})
+
+
+// ------------------- END OF SDC ADDITIONS ---------------------- //
 
 
 // getting all products data from DB
 app.get('/products', async (req, res) => {
-    try {		
+    try {
       const data = await db.Product.findAll({
         attributes: {exclude: ['createdAt', 'updatedAt']}
       })
       res.send(data);
     } catch (e) {
     console.error(e)
-    } 
+    }
 })
 
-
-
-    
 
   // getting a specific product's data from the DB
 app.get('/products/:productId', async (req, res) => {
