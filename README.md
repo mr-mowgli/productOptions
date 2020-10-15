@@ -1,6 +1,6 @@
-## Product Options CRUD API
+# Product Options CRUD API
 
-### Create New
+## Create New
 POST`/api/products`
 
 Request Parameters (JSON)
@@ -40,7 +40,7 @@ DELETE`/api/products/<product ID>`
 
 
 
-## Product Options Dev Setup
+# Product Options Dev Setup
 
  Module to select quantity, color or size before adding an item to the registry.
 
