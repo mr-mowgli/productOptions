@@ -4,7 +4,9 @@
 POST`/api/products`
 
 Request Parameters (JSON)
+
 _all required_
+
 ```json
 "name" : string
 "price" : float
@@ -30,8 +32,11 @@ Data will be returned in the following format:
 ```
 ## Update
 PUT`/api/products/<product ID>`
+
 _all required_
+
 Request parameters (JSON)
+
 ```json
 "name" : string
 "price" : float
