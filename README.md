@@ -5,11 +5,12 @@ POST`/api/products`
 
 Request Parameters (JSON)
 _all required_
-
-`name` : string
-`price` : float
-`reviews`: float
-`reviewCount`: integer
+```json
+"name" : string
+"price" : float
+"reviews": float
+"reviewCount": integer
+```
 
 ## Read Existing
 GET`/api/products/<product ID>`
@@ -31,10 +32,13 @@ Data will be returned in the following format:
 PUT`/api/products/<product ID>`
 _all required_
 Request parameters (JSON)
-`name` : string
-`price` : float
-`reviews`: float
-`reviewCount`: integer
+```json
+"name" : string
+"price" : float
+"reviews": float
+"reviewCount": integer
+```
+
 
 ## Delete
 DELETE`/api/products/<product ID>`
