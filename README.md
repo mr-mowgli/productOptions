@@ -5,6 +5,7 @@ POST`/api/products`
 
 Request Parameters (JSON)
 _all required_
+
 `name` : string
 `price` : float
 `reviews`: float
