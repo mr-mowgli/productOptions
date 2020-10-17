@@ -58,13 +58,13 @@ const deleteProduct = function(prodId) {
 // CREATE
 app.post('/api/products', async (req, res) => {
   try {
-    db.Product.create({
+    await db.Product.create({
       name: req.body.name,
       price: req.body.price,
       reviews: req.body.reviews,
       reviewCount: req.body.reviewCount
-    })
-    res.send('success')
+    });
+    res.status(201).end()
   } catch (e) {
     console.error(e)
   }
@@ -72,15 +72,15 @@ app.post('/api/products', async (req, res) => {
 
 app.post('/api/stock', async (req, res) => {
   try {
-    db.Stock.create({
+    await db.Stock.create({
       color: req.body.color,
       colorUrl: req.body.colorUrl,
       size: req.body.size,
       qty: req.body.qty,
       ProductId: req.body.ProductId,
       StoreId: req.body.StoreId
-    })
-    res.send('success')
+    });
+    res.status(201).end();
   } catch (e) {
     console.error(e)
   }
@@ -90,7 +90,7 @@ app.post('/api/stock', async (req, res) => {
 app.get('/api/products/:prodId', async (req, res) => {
   try {
     const data = await findProduct(req.params.prodId);
-    res.send(data)
+    res.status(200).send(data);
   } catch (e) {
     console.error(e)
   }
@@ -100,7 +100,7 @@ app.get('/api/products/:prodId', async (req, res) => {
 app.put('/api/products/:prodId', async (req, res) => {
   try {
     await updateProduct(req.params.prodId, req.body)
-    res.end()
+    res.status(201).end()
   } catch (e) {
     console.error(e)
   }
@@ -110,7 +110,7 @@ app.put('/api/products/:prodId', async (req, res) => {
 app.delete('/api/products/:prodId', async (req, res) => {
   try {
     await deleteProduct(req.params.prodId);
-    res.end();
+    res.status(200).end();
   } catch (e) {
     console.error(e)
   }
