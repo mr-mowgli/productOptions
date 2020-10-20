@@ -33,7 +33,10 @@ const reviewCount = function() {
 
 // generate all data for DB
 const generateProducts = async function(quantity) {
-  var dataOut = fs.createWriteStream('data.txt');
+  var productFile = fs.createWriteStream('products.csv');
+  var stockFile = fs.createWriteStream('stocks.csv');
+  productFile.write('id,name,price,reviews,reviewCount\n');
+  stockFile.write('id,product,price,reviews,reviewCount\n');
   // create all the products and 1 - 3 stock per product
   for (var p = 1; p <= quantity; p++) {
     let curProduct = {
@@ -59,11 +62,15 @@ const generateProducts = async function(quantity) {
         qty:quantity
       };
       let loadRecord = JSON.stringify(curStock)
-      if (!dataOut.write(loadRecord)) {
-        await new Promise(resolve => dataOut.once('drain', resolve))
+      if (!productFile.write(loadRecord)) {
+        await new Promise(resolve => productFile.once('drain', resolve))
+      }
+      if (k < stockCount) {
+        productFile.write(',')
       }
     }
   }
-  dataOut.end()
+  productFile.write(']')
+  productFile.end()
 };
 generateProducts(10000000);
