@@ -15,7 +15,9 @@
     "express": "^4.17.1",
     "faker": "^5.1.0",
     "mysql2": "^2.2.5",
+    "newrelic": "^6.13.2",
     "nodemon": "^2.0.4",
+    "pg": "^8.4.1",
     "sequelize": "^6.3.5"
   },
   "devDependencies": {

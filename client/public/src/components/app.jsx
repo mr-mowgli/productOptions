@@ -8,6 +8,7 @@ import Options from './options.jsx';
 import Store from './store.jsx';
 import {ProductOptionsStyling, Flexbox, Column} from '../styling/styles.jsx';
 
+
 const ProductOptions = () => {
   const urlProductId = window.location.pathname.slice(1) || 1;
   const [stores, setStores] = useState([]);
@@ -15,7 +16,7 @@ const ProductOptions = () => {
   const [colors, setColors] = useState([]);
   const [sizes, setSizes] = useState([]);
 
-  const [store, setStore] = useState({id: 1});
+  const [store, setStore] = useState({id: 900000001});
   const [product, setProduct] = useState({id: urlProductId});
   const [color, setColor] = useState('White');
   const [size, setSize] = useState('M');
@@ -41,7 +42,7 @@ const ProductOptions = () => {
 
   // get a list of all the stores (names and ids)
   const getStores = async () => {
-    const response = await axios.get(`http://${location.hostname}:3002/stores`);
+    const response = await axios.get(`http://${location.hostname}:3002/list/stores`);
     const storesData = response.data;
     setStores(storesData);
   }
